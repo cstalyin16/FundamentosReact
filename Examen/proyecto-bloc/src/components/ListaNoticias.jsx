@@ -40,9 +40,9 @@ function ListaNoticias() {
       </section>
 
       <section className="news-grid">
-        {cargando && <p>Cargando ...</p>}
+        {cargando && <p className="status-message">Cargando ...</p>}
 
-        {error && <p>{error}</p>}
+        {error && <p className="status-message error-message">{error}</p>}
 
         {!cargando &&
           !error &&
