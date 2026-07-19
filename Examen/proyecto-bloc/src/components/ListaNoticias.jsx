@@ -1,6 +1,12 @@
 import TarjetaNoticia from "./TarjetaNoticia";
 
 function ListaNoticias() {
+  const noticiaEjemplo = {
+    id: 1,
+    title: "Primera noticia del bloc - examen",
+    body: "Contenido enviado mediante props hacia tarjetaNoticia",
+  };
+
   return (
     <main id="noticias">
       <section>
@@ -11,7 +17,7 @@ function ListaNoticias() {
         <p>Mantente al día con las últimas tendencias y novedades.</p>
       </section>
       <section>
-        <TarjetaNoticia />
+        <TarjetaNoticia info={noticiaEjemplo} />
       </section>
     </main>
   );

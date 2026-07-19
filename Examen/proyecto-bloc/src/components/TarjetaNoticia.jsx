@@ -1,11 +1,11 @@
-function TarjetaNoticia() {
+function TarjetaNoticia({ info }) {
   return (
     <article>
-      <span>01</span>
+      <span>{info.id}</span>
 
-      <h3>Título de ejemplo</h3>
+      <h3>{info.title}</h3>
 
-      <p>Este es el contenido de una noticia de ejemplo.</p>
+      <p>{info.body}</p>
 
       <button type="button">Leer más</button>
     </article>
