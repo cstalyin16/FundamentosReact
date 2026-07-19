@@ -4,16 +4,25 @@ import TarjetaNoticia from "./TarjetaNoticia";
 function ListaNoticias() {
   const [noticias, setNoticias] = useState([]);
   const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((respuesta) => respuesta.json())
+      .then((respuesta) => {
+        if (!respuesta.ok) {
+          throw new Error("No se pudo obtener la información");
+        }
+
+        return respuesta.json();
+      })
       .then((datos) => {
         setNoticias(datos.slice(0, 12));
-        setCargando(false);
       })
       .catch((error) => {
         console.error("Error al obtener las noticias:", error);
+        setError("No se pudieron cargar las noticias.");
+      })
+      .finally(() => {
         setCargando(false);
       });
   }, []);
@@ -29,13 +38,15 @@ function ListaNoticias() {
       </section>
 
       <section>
-        {cargando ? (
-          <p>Cargando ...</p>
-        ) : (
+        {cargando && <p>Cargando ...</p>}
+
+        {error && <p>{error}</p>}
+
+        {!cargando &&
+          !error &&
           noticias.map((noticia) => (
             <TarjetaNoticia key={noticia.id} info={noticia} />
-          ))
-        )}
+          ))}
       </section>
     </main>
   );
