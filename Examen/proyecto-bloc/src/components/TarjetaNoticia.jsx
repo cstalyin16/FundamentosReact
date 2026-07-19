@@ -1,13 +1,13 @@
 function TarjetaNoticia({ info }) {
   return (
-    <article>
-      <span>{info.id}</span>
+    <article className="card">
+      <span className="card-number">{info.id}</span>
 
-      <h3>{info.title}</h3>
+      <h3 className="card-title">{info.title}</h3>
 
-      <p>{info.body}</p>
+      <p className="card-body">{info.body}</p>
 
-      <button type="button">Leer más</button>
+      <button className="btn-secondary">Leer más</button>
     </article>
   );
 }

@@ -28,16 +28,18 @@ function ListaNoticias() {
   }, []);
 
   return (
-    <main id="noticias">
-      <section>
-        <p>Noticias recientes</p>
+    <main className="main" id="noticias">
+      <section className="hero">
+        <p className="subtitle">Noticias recientes</p>
 
-        <h2>Últimas Noticias</h2>
+        <h2 className="title">Últimas Noticias</h2>
 
-        <p>Mantente al día con las últimas tendencias y novedades.</p>
+        <p className="description">
+          Mantente al día con las últimas tendencias y novedades.
+        </p>
       </section>
 
-      <section>
+      <section className="news-grid">
         {cargando && <p>Cargando ...</p>}
 
         {error && <p>{error}</p>}
