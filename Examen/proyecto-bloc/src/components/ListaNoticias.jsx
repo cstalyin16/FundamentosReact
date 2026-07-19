@@ -1,23 +1,19 @@
+import { useEffect, useState } from "react";
 import TarjetaNoticia from "./TarjetaNoticia";
 
 function ListaNoticias() {
-  const noticias = [
-    {
-      id: 1,
-      title: "React sigue creciendo",
-      body: "React continúa siendo una de las librerías más utilizadas para desarrollar aplicaciones web.",
-    },
-    {
-      id: 2,
-      title: "JavaScript domina el mercado",
-      body: "Cada año JavaScript se mantiene como uno de los lenguajes más populares.",
-    },
-    {
-      id: 3,
-      title: "Vite mejora el rendimiento",
-      body: "Vite permite crear proyectos React mucho más rápidos que herramientas tradicionales.",
-    },
-  ];
+  const [noticias, setNoticias] = useState([]);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((respuesta) => respuesta.json())
+      .then((datos) => {
+        setNoticias(datos.slice(0, 12));
+      })
+      .catch((error) => {
+        console.error("Error al obtener las noticias:", error);
+      });
+  }, []);
 
   return (
     <main id="noticias">
