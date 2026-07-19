@@ -93,3 +93,21 @@ Esto ayuda a React a saber qué elemento fue agregado, eliminado o actualizado, 
 La diferencia radica en que al montar el componente por primera vez, el estado `noticias` es un arreglo vacío porque todavía no se ha realizado la petición a la API por lo que no habran datos para mostrar.
 
 Y una vez que el `fetch` obtiene la respuesta correctamente, los datos se almacenan en el estado mediante `setNoticias(datos.slice(0, 12))`. En ese momento, `noticias` deja de estar vacío y pasa a contener un arreglo con los 12 objetos obtenidos de la API.
+
+---
+
+## Parte 4 - Diseño Visual Asistido por IA
+
+### 1. ¿El CSS generado por la IA funcionó tal cual, o tuviste que corregir/adaptar algo? Menciona un ejemplo concreto.
+
+El css generado fue en cierta parte lo que esperaba pero falto agregar un poco mas de descripción para que el responsive mobile sea un poco mejor.
+
+Tuve que corregir un poco el diseño final y agregar un amburguer para tener un navbar mas responsivo en mobile.
+
+### 2. ¿Por qué es importante revisar y entender el código que genera una IA antes de usarlo, en vez de copiarlo y pegarlo directamente sin leerlo?
+
+Existen varias razones por las que primero es mejor realizar revision del código generado por la IA, ya que puede tener errores de seguridad, codigo que no pedimos, inclusive el uso de emojis o comentarios de IA que hacen del proyecto muy poco profesional.
+
+En este caso como la version del diseño fue lo que esperaba hasta cierta parte, lo acepte pero cabe recalcar que esto en un archivo de estilado `css` pero para temas como la lógica hay que tener cuidado por ejemplo:
+
+Si pedimos a la IA hacer un login con usuario y contraseña sin mucho contexto nos dara un código poco seguro ya que realmente para un login tendriamos que tener cuidado en las contraseñas posiblemente mandarlas con hash y etc,.
