@@ -15,10 +15,20 @@ th {
   padding: 12px;
 }
 
+th:first-child {
+  border-radius: 10px 0 0 0;
+}
+th:last-child {
+  border-radius: 0 10px 0 0;
+}
+
 td {
   padding: 10px;
-  border-bottom: 1px solid #ddd;
-  text-align: center;
+  background: #dddddd13;
+  text-align: start;
+  color: white;
+  font-weight: normal;
+  font-size: 15px;
 }
 
 tr:hover {
@@ -33,6 +43,23 @@ progress {
 span {
   margin-left: 8px;
   font-weight: bold;
+}
+
+/* badge de estado */
+.disponible {
+  background: rgb(4, 137, 4);
+  font-size: 14px;
+  border-radius: 50px;
+  color: white;
+  text-align: center;
+}
+
+.agotado {
+  background: rgb(202, 0, 0);
+  font-size: 14px;
+  border-radius: 50px;
+  color: white;
+  text-align: center;
 }
 
 @media (max-width: 768px) {

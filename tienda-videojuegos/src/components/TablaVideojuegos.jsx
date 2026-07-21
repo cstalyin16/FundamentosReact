@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./TablaVideojuegos.css";
 
 function TablaVideojuegos({ juegos }) {
@@ -23,7 +24,11 @@ function TablaVideojuegos({ juegos }) {
               <td>{juego.plataforma}</td>
               <td>{juego.lanzamiento}</td>
               <td>{juego.precio}</td>
-              <td>{juego.disponible}</td>
+              <td>
+                <p className={juego.disponible ? "disponible" : "agotado"}>
+                  {juego.disponible ? "Disponible" : "Agotado"}
+                </p>
+              </td>
               <td>
                 <progress value={juego.progreso} max="1"></progress>
                 <span>{Math.round(juego.progreso * 100)}%</span>
