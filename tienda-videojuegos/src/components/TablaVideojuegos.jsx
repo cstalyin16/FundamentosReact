@@ -1,6 +1,8 @@
+import "./TablaVideojuegos.css";
+
 function TablaVideojuegos({ juegos }) {
   return (
-    <div>
+    <div className="contenedor-tabla">
       <table>
         <thead>
           <tr>
