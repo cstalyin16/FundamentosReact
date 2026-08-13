@@ -6,6 +6,7 @@ import videojuegos from "./data/videojuegos";
 import TablaVideojuegos from "./components/TablaVideojuegos";
 import FormularioVideojuego from "./components/FormularioVideojuego";
 import Navbar from "./components/Navbar";
+import PaginaNoEncontrada from "./components/PaginaNoEncontrada";
 
 function App() {
   const [juegos, setJuegos] = useState(videojuegos);
@@ -64,6 +65,8 @@ function App() {
             />
           }
         />
+
+        <Route path="*" element={<PaginaNoEncontrada />} />
       </Routes>
     </BrowserRouter>
   );
