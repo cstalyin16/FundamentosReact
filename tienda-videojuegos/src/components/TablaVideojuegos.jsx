@@ -1,7 +1,6 @@
-import { useState } from "react";
 import "./TablaVideojuegos.css";
 
-function TablaVideojuegos({ juegos }) {
+function TablaVideojuegos({ juegos, onEliminar }) {
   return (
     <div className="contenedor-tabla">
       <table>
@@ -14,6 +13,7 @@ function TablaVideojuegos({ juegos }) {
             <th>Precio</th>
             <th>Disponible</th>
             <th>Progreso</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -32,6 +32,10 @@ function TablaVideojuegos({ juegos }) {
               <td>
                 <progress value={juego.progreso} max="1"></progress>
                 <span>{Math.round(juego.progreso * 100)}%</span>
+              </td>
+              <td>
+                <button>Editar</button>
+                <button onClick={() => onEliminar(juego.id)}>Eliminar</button>
               </td>
             </tr>
           ))}
