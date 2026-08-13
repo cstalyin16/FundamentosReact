@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+
+import "./FormularioVideojuego.css";
 
 function FormularioVideojuego({ onGuardar, onEditar }) {
   const navigate = useNavigate();
@@ -48,101 +50,148 @@ function FormularioVideojuego({ onGuardar, onEditar }) {
   };
 
   return (
-    <form onSubmit={manejarSubmit}>
-      <h2>{juegoEditar ? "Editar Videojuego" : "Registrar Videojuego"}</h2>
+    <main className="formulario-contenedor">
+      <div className="formulario-card">
+        <div className="formulario-header">
+          <h2>{juegoEditar ? "Editar Videojuego" : "Registrar Videojuego"}</h2>
 
-      <div>
-        <label>Título</label>
-        <input
-          type="text"
-          name="titulo"
-          value={formulario.titulo}
-          onChange={manejarCambio}
-        />
+          <p>
+            {juegoEditar
+              ? "Modifica la información del videojuego seleccionado."
+              : "Completa la información para agregar un nuevo videojuego al inventario."}
+          </p>
+        </div>
+
+        <form onSubmit={manejarSubmit}>
+          <div className="formulario-grid">
+            <div className="campo campo-completo">
+              <label htmlFor="titulo">Título</label>
+
+              <input
+                id="titulo"
+                type="text"
+                name="titulo"
+                value={formulario.titulo}
+                onChange={manejarCambio}
+                placeholder="Ej. Super Mario Odyssey"
+                required
+              />
+            </div>
+
+            <div className="campo">
+              <label htmlFor="genero">Género</label>
+
+              <select
+                id="genero"
+                name="genero"
+                value={formulario.genero}
+                onChange={manejarCambio}
+                required
+              >
+                <option value="">Seleccione un género</option>
+                <option value="Acción">Acción</option>
+                <option value="Aventura">Aventura</option>
+                <option value="Carreras">Carreras</option>
+                <option value="Construcción">Construcción</option>
+              </select>
+            </div>
+
+            <div className="campo">
+              <label htmlFor="plataforma">Plataforma</label>
+
+              <select
+                id="plataforma"
+                name="plataforma"
+                value={formulario.plataforma}
+                onChange={manejarCambio}
+                required
+              >
+                <option value="">Seleccione una plataforma</option>
+                <option value="PC">PC</option>
+                <option value="PlayStation 5">PlayStation 5</option>
+                <option value="Xbox Series X">Xbox Series X</option>
+                <option value="Nintendo Switch">Nintendo Switch</option>
+              </select>
+            </div>
+
+            <div className="campo">
+              <label htmlFor="lanzamiento">Año de lanzamiento</label>
+
+              <input
+                id="lanzamiento"
+                type="number"
+                name="lanzamiento"
+                value={formulario.lanzamiento}
+                onChange={manejarCambio}
+                placeholder="Ej. 2024"
+                required
+              />
+            </div>
+
+            <div className="campo">
+              <label htmlFor="precio">Precio</label>
+
+              <input
+                id="precio"
+                type="number"
+                step="0.01"
+                min="0"
+                name="precio"
+                value={formulario.precio}
+                onChange={manejarCambio}
+                placeholder="Ej. 59.99"
+                required
+              />
+            </div>
+
+            <div className="campo">
+              <label>Disponibilidad</label>
+
+              <div className="checkbox-contenedor">
+                <input
+                  id="disponible"
+                  type="checkbox"
+                  name="disponible"
+                  checked={formulario.disponible}
+                  onChange={manejarCambio}
+                />
+
+                <label htmlFor="disponible">Disponible para la venta</label>
+              </div>
+            </div>
+
+            <div className="campo">
+              <label htmlFor="progreso">Progreso</label>
+
+              <div className="progreso-formulario">
+                <input
+                  id="progreso"
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.1"
+                  name="progreso"
+                  value={formulario.progreso}
+                  onChange={manejarCambio}
+                />
+
+                <span>{Math.round(formulario.progreso * 100)}%</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="formulario-acciones">
+            <Link className="boton-cancelar" to="/">
+              Cancelar
+            </Link>
+
+            <button className="boton-guardar" type="submit">
+              {juegoEditar ? "Guardar Cambios" : "Registrar Juego"}
+            </button>
+          </div>
+        </form>
       </div>
-
-      <div>
-        <label>Género</label>
-        <select
-          name="genero"
-          value={formulario.genero}
-          onChange={manejarCambio}
-        >
-          <option value="">Seleccione un género</option>
-          <option value="Acción">Acción</option>
-          <option value="Aventura">Aventura</option>
-          <option value="Carreras">Carreras</option>
-          <option value="Construcción">Construcción</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Plataforma</label>
-        <select
-          name="plataforma"
-          value={formulario.plataforma}
-          onChange={manejarCambio}
-        >
-          <option value="">Seleccione una plataforma</option>
-          <option value="PC">PC</option>
-          <option value="PlayStation 5">PlayStation 5</option>
-          <option value="Xbox Series X">Xbox Series X</option>
-          <option value="Nintendo Switch">Nintendo Switch</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Año de lanzamiento</label>
-        <input
-          type="number"
-          name="lanzamiento"
-          value={formulario.lanzamiento}
-          onChange={manejarCambio}
-        />
-      </div>
-
-      <div>
-        <label>Precio</label>
-        <input
-          type="number"
-          step="0.01"
-          name="precio"
-          value={formulario.precio}
-          onChange={manejarCambio}
-        />
-      </div>
-
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            name="disponible"
-            checked={formulario.disponible}
-            onChange={manejarCambio}
-          />
-          Disponible
-        </label>
-      </div>
-
-      <div>
-        <label>Progreso</label>
-        <input
-          type="range"
-          min="0"
-          max="1"
-          step="0.1"
-          name="progreso"
-          value={formulario.progreso}
-          onChange={manejarCambio}
-        />
-
-        <span>{Math.round(formulario.progreso * 100)}%</span>
-      </div>
-
-      <button type="submit">
-        {juegoEditar ? "Guardar Cambios" : "Agregar Juego"}
-      </button>
-    </form>
+    </main>
   );
 }
 
