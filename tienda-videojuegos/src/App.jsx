@@ -40,9 +40,14 @@ function App() {
         <Route
           path="/"
           element={
-            <div>
+            <main>
+              <div className="titulo-pagina">
+                <h2>Inventario de Videojuegos</h2>
+                <p>Administra los videojuegos disponibles en la tienda.</p>
+              </div>
+
               <TablaVideojuegos juegos={juegos} onEliminar={eliminarJuego} />
-            </div>
+            </main>
           }
         />
 

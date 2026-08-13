@@ -31,14 +31,18 @@ function TablaVideojuegos({ juegos, onEliminar }) {
                 </p>
               </td>
               <td>
-                <progress value={juego.progreso} max="1"></progress>
-                <span>{Math.round(juego.progreso * 100)}%</span>
+                <div className="progreso">
+                  <progress value={juego.progreso} max="1"></progress>
+                  <span>{Math.round(juego.progreso * 100)}%</span>
+                </div>
               </td>
               <td>
-                <Link to="/editar" state={{ juego }}>
-                  Editar
-                </Link>
-                <button onClick={() => onEliminar(juego.id)}>Eliminar</button>
+                <div className="acciones">
+                  <Link to="/editar" state={{ juego }}>
+                    Editar
+                  </Link>
+                  <button onClick={() => onEliminar(juego.id)}>Eliminar</button>
+                </div>
               </td>
             </tr>
           ))}
