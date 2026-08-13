@@ -1,15 +1,24 @@
 import { Link } from "react-router-dom";
+import "./PaginaNoEncontrada.css";
 
 function PaginaNoEncontrada() {
   return (
-    <div>
-      <h1>404</h1>
-      <h2>Página no encontrada</h2>
+    <main className="pagina-404">
+      <div className="error-card">
+        <h1 className="error-codigo">404</h1>
 
-      <p>La página que estás buscando no existe.</p>
+        <h2>Página no encontrada</h2>
 
-      <Link to="/">Volver al inventario</Link>
-    </div>
+        <p>
+          La página que estás buscando no existe o la dirección ingresada no es
+          correcta.
+        </p>
+
+        <Link className="boton-volver" to="/">
+          Volver al inventario
+        </Link>
+      </div>
+    </main>
   );
 }
 
