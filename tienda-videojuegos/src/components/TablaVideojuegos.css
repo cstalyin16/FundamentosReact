@@ -117,3 +117,78 @@ progress {
 .boton-eliminar:hover {
   background: #fecaca;
 }
+
+@media (max-width: 768px) {
+  .contenedor-tabla {
+    overflow: visible;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  table {
+    min-width: 0;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  tr {
+    margin-bottom: 18px;
+    padding: 6px 16px;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #f1f1f1;
+  }
+
+  td:last-child {
+    border-bottom: none;
+  }
+
+  td::before {
+    content: attr(data-label);
+
+    font-size: 13px;
+    font-weight: bold;
+
+    color: #6b7280;
+  }
+
+  .progreso {
+    justify-content: flex-end;
+  }
+
+  .acciones {
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  .boton-editar,
+  .boton-eliminar {
+    flex: 1;
+    text-align: center;
+  }
+}
