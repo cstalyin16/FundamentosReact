@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function FormularioVideojuego() {
+function FormularioVideojuego({ onGuardar }) {
+  const navigate = useNavigate();
   const [formulario, setFormulario] = useState({
     titulo: "",
     genero: "",
@@ -23,7 +25,16 @@ function FormularioVideojuego() {
   const manejarSubmit = (e) => {
     e.preventDefault();
 
-    console.log(formulario);
+    const nuevoJuego = {
+      ...formulario,
+      lanzamiento: Number(formulario.lanzamiento),
+      precio: Number(formulario.precio),
+      progreso: Number(formulario.progreso),
+    };
+
+    onGuardar(nuevoJuego);
+
+    navigate("/");
   };
 
   return (

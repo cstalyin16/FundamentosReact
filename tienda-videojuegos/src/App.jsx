@@ -15,6 +15,15 @@ function App() {
     setJuegos(nuevaLista);
   };
 
+  const agregarJuego = (nuevoJuego) => {
+    const juegoConId = {
+      ...nuevoJuego,
+      id: Date.now(),
+    };
+
+    setJuegos([...juegos, juegoConId]);
+  };
+
   return (
     <BrowserRouter>
       <Navbar />
@@ -27,7 +36,10 @@ function App() {
             </div>
           }
         />
-        <Route path="/nuevo" element={<FormularioVideojuego />} />
+        <Route
+          path="/nuevo"
+          element={<FormularioVideojuego onGuardar={agregarJuego} />}
+        />
       </Routes>
     </BrowserRouter>
   );
