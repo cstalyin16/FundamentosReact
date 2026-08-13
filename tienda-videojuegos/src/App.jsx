@@ -24,6 +24,14 @@ function App() {
     setJuegos([...juegos, juegoConId]);
   };
 
+  const editarJuego = (juegoEditado) => {
+    const nuevaLista = juegos.map((juego) =>
+      juego.id === juegoEditado.id ? juegoEditado : juego,
+    );
+
+    setJuegos(nuevaLista);
+  };
+
   return (
     <BrowserRouter>
       <Navbar />
@@ -36,9 +44,25 @@ function App() {
             </div>
           }
         />
+
         <Route
           path="/nuevo"
-          element={<FormularioVideojuego onGuardar={agregarJuego} />}
+          element={
+            <FormularioVideojuego
+              onGuardar={agregarJuego}
+              onEditar={editarJuego}
+            />
+          }
+        />
+
+        <Route
+          path="/editar"
+          element={
+            <FormularioVideojuego
+              onGuardar={agregarJuego}
+              onEditar={editarJuego}
+            />
+          }
         />
       </Routes>
     </BrowserRouter>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./TablaVideojuegos.css";
 
 function TablaVideojuegos({ juegos, onEliminar }) {
@@ -34,7 +35,9 @@ function TablaVideojuegos({ juegos, onEliminar }) {
                 <span>{Math.round(juego.progreso * 100)}%</span>
               </td>
               <td>
-                <button>Editar</button>
+                <Link to="/editar" state={{ juego }}>
+                  Editar
+                </Link>
                 <button onClick={() => onEliminar(juego.id)}>Eliminar</button>
               </td>
             </tr>

@@ -1,17 +1,23 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-function FormularioVideojuego({ onGuardar }) {
+function FormularioVideojuego({ onGuardar, onEditar }) {
   const navigate = useNavigate();
-  const [formulario, setFormulario] = useState({
-    titulo: "",
-    genero: "",
-    plataforma: "",
-    lanzamiento: "",
-    precio: "",
-    disponible: false,
-    progreso: 0,
-  });
+  const location = useLocation();
+
+  const juegoEditar = location.state?.juego;
+
+  const [formulario, setFormulario] = useState(
+    juegoEditar || {
+      titulo: "",
+      genero: "",
+      plataforma: "",
+      lanzamiento: "",
+      precio: "",
+      disponible: false,
+      progreso: 0,
+    },
+  );
 
   const manejarCambio = (e) => {
     const { name, value, type, checked } = e.target;
@@ -25,21 +31,25 @@ function FormularioVideojuego({ onGuardar }) {
   const manejarSubmit = (e) => {
     e.preventDefault();
 
-    const nuevoJuego = {
+    const juegoFormulario = {
       ...formulario,
       lanzamiento: Number(formulario.lanzamiento),
       precio: Number(formulario.precio),
       progreso: Number(formulario.progreso),
     };
 
-    onGuardar(nuevoJuego);
+    if (juegoEditar) {
+      onEditar(juegoFormulario);
+    } else {
+      onGuardar(juegoFormulario);
+    }
 
     navigate("/");
   };
 
   return (
     <form onSubmit={manejarSubmit}>
-      <h2>Registrar Videojuego</h2>
+      <h2>{juegoEditar ? "Editar Videojuego" : "Registrar Videojuego"}</h2>
 
       <div>
         <label>Título</label>
@@ -129,7 +139,9 @@ function FormularioVideojuego({ onGuardar }) {
         <span>{Math.round(formulario.progreso * 100)}%</span>
       </div>
 
-      <button type="submit">Guardar</button>
+      <button type="submit">
+        {juegoEditar ? "Guardar Cambios" : "Agregar Juego"}
+      </button>
     </form>
   );
 }
